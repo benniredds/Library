@@ -1,5 +1,4 @@
-﻿NAMESPACE Lib
-DATA_BLOCK Itf
+﻿DATA_BLOCK Itf
 { S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
 VERSION : 0.1
 NON_RETAIN
@@ -24,5 +23,4 @@ NON_RETAIN
 BEGIN
 
 END_DATA_BLOCK
-END_NAMESPACE
 
