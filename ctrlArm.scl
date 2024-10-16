@@ -1,0 +1,128 @@
+﻿FUNCTION_BLOCK "ctrlArm"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      prendi : Bool;
+      posa : Bool;
+      accendiAsse : Bool;
+      vaiAHomeAsse : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      pinzaAperta : Bool;
+      pinzaChiusa : Bool;
+      inPosAlta : Bool;
+      inPosBassa : Bool;
+      asseAcceso : Bool;
+      asseReferenziato : Bool;
+      uscitaPinza : Bool;
+      errori : Bool;
+   END_VAR
+
+   VAR_IN_OUT 
+      finePresa : Bool;
+      finePosa : Bool;
+   END_VAR
+
+   VAR 
+      statMissionePrendi { S7_SetPoint := 'True'} : Int;
+      statMissionePosa : Int;
+      statApriPinza : Bool;
+      statChiudiPinza : Bool;
+      statvaiAPosAttesa : Bool;
+      statvaiAPosPresa : Bool;
+      statErroreAsse : Bool;
+      statErrorePinza : Bool;
+   END_VAR
+
+
+BEGIN
+	        CASE #statMissionePrendi OF
+	            0:  // Avvio Missione Prendi
+	                IF #prendi THEN
+	                    #finePresa := FALSE;
+	                    #statMissionePrendi := 2;
+	                END_IF;
+	            2:  // La pinza è aperta?
+	                IF #pinzaAperta THEN
+	                    #statApriPinza := FALSE;
+	                    #statMissionePrendi := 4;
+	                ELSE
+	                    #statApriPinza := TRUE;
+	                END_IF;
+	            4: //Vai a posizione di presa
+	                IF #inPosBassa THEN
+	                    #statvaiAPosPresa := FALSE;
+	                    #statMissionePrendi := 6;
+	                ELSE
+	                    #statvaiAPosPresa := TRUE;
+	                END_IF;
+	            6: //Chiudi la pinza
+	                IF #pinzaChiusa THEN
+	                    #statChiudiPinza := FALSE;
+	                    #statMissionePrendi := 8;
+	                ELSE
+	                    #statChiudiPinza := TRUE;
+	                END_IF;
+	            8: //Vai a posizione di attesa
+	                IF #inPosAlta THEN
+	                    #statvaiAPosAttesa := FALSE;
+	                    #statMissionePrendi := 30;
+	                ELSE
+	                    #statvaiAPosAttesa := TRUE;
+	                END_IF;
+	            30: //Fine
+	                #statMissionePrendi := 0;
+	                #finePresa := true;
+	        END_CASE;
+	        
+	        
+	        CASE #statMissionePosa OF
+	            0:  // Avvio Missione Prendi
+	                IF #posa THEN
+	                    #finePosa := FALSE;
+	                    #statMissionePosa := 2;
+	                END_IF;
+	            2: //Vai a posizione di deposito
+	                IF #inPosBassa THEN
+	                    #statvaiAPosPresa := FALSE;
+	                    #statMissionePosa := 4;
+	                ELSE
+	                    #statvaiAPosPresa := TRUE;
+	                END_IF;
+	            4: //Apri la pinza
+	                IF #pinzaAperta THEN
+	                    #statApriPinza := FALSE;
+	                    #statMissionePosa := 6;
+	                ELSE
+	                    #statApriPinza := TRUE;
+	                END_IF;
+	            6: //Vai a posizione di attesa
+	                IF #inPosAlta THEN
+	                    #statvaiAPosAttesa := FALSE;
+	                    #statMissionePosa := 30;
+	                ELSE
+	                    #statvaiAPosAttesa := TRUE;
+	                END_IF;
+	            30: //Fine
+	                #statMissionePosa := 0;
+	                #finePosa := TRUE;
+	        END_CASE;
+	        
+	        "ctrlGrip"(apri := #statApriPinza,
+	                 chiudi := #statChiudiPinza,
+	                 timerPinza := T#500ms,
+	                 chiudiPinza => #uscitaPinza,
+	                 aperta => #pinzaAperta,
+	                 chiusa => #pinzaChiusa,
+	                 errore => #statErrorePinza);
+	        
+	        
+	        #errori := #statErroreAsse OR #statErrorePinza;
+	        
+	        
+	        
+	        
+	        
+END_FUNCTION_BLOCK
+

@@ -1,0 +1,43 @@
+﻿FUNCTION_BLOCK "ctrlAxis"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      on : Bool;
+      home : Bool;
+      goToPos1 : Bool;
+      goToPos2 : Bool;
+      Pos1 : Real;
+      Pos2 : Real;
+   END_VAR
+
+   VAR_OUTPUT 
+      powered : Bool;
+      referenced : Bool;
+      inPos1 : Bool;
+      inPos2 : Bool;
+      error : Bool;
+   END_VAR
+
+   VAR_TEMP 
+      minPos1 : LReal;
+      maxPos1 : LReal;
+      minPos2 : LReal;
+      maxPos2 : LReal;
+   END_VAR
+
+   VAR CONSTANT 
+      TOL : LReal := 0.5;
+   END_VAR
+
+
+BEGIN
+	#minPos1 := #Pos1 - #TOL;
+	#maxPos1 := #Pos1 + #TOL;
+	#minPos2 := #Pos2 - #TOL;
+	#maxPos2 := #Pos2 + #TOL;
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+
