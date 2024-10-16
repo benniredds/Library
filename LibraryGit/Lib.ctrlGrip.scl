@@ -1,0 +1,36 @@
+﻿NAMESPACE Lib
+FUNCTION ctrlGrip : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_INPUT 
+      apri : Bool;
+      chiudi : Bool;
+      timerPinza : Time;
+   END_VAR
+
+   VAR_OUTPUT 
+      chiudiPinza : Bool;
+      aperta : Bool;
+      chiusa : Bool;
+      errore : Bool;
+   END_VAR
+
+
+BEGIN
+	REGION Header
+	    //La pinza è MONOSTABILE, il comando di chiusura va tenenuto finchè vogliamo che la pinza rimanga chiusa.
+	END_REGION
+	
+	IF #chiudi AND NOT #apri THEN
+	    #chiudiPinza := TRUE;
+	END_IF;
+	IF #apri AND NOT #chiudi THEN
+	    #chiudiPinza := FALSE;
+	END_IF;
+	
+	//Errore doppio comando
+	#errore := #apri AND #chiudi;
+	
+END_FUNCTION
+END_NAMESPACE
+

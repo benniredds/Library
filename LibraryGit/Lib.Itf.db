@@ -1,0 +1,28 @@
+﻿NAMESPACE Lib
+DATA_BLOCK Itf
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+NON_RETAIN
+   VAR 
+      prendi : Bool;
+      posa : Bool;
+      accendiAsse : Bool;
+      vaiAHomeAsse : Bool;
+      pinzaAperta : Bool;
+      pinzaChiusa : Bool;
+      inPosAlta : Bool;
+      inPosBassa : Bool;
+      asseAcceso : Bool;
+      asseReferenziato : Bool;
+      errori : Bool;
+      fineMissionePresa : Bool;
+      fineMissionePosa : Bool;
+      posizioneAttuale : Real;
+   END_VAR
+
+
+BEGIN
+
+END_DATA_BLOCK
+END_NAMESPACE
+
