@@ -1,4 +1,3 @@
-﻿NAMESPACE Lib
 TYPE udt
 { Published := 'FALSE' }
 VERSION : 0.1
@@ -10,5 +9,3 @@ VERSION : 0.1
    END_STRUCT;
 
 END_TYPE
-END_NAMESPACE
-
