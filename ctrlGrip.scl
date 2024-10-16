@@ -1,5 +1,5 @@
-FUNCTION ctrlGrip : Void
-{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+﻿FUNCTION "ctrlGrip" : Void
+{ S7_Optimized_Access := 'TRUE' }
 VERSION : 0.1
    VAR_INPUT 
       apri : Bool;
@@ -17,7 +17,7 @@ VERSION : 0.1
 
 BEGIN
 	REGION Header
-	    //La pinza è MONOSTABILE, il comando di chiusura va tenenuto finchè vogliamo che la pinza rimanga chiusa.
+	    //La pinza Ã¨ MONOSTABILE, il comando di chiusura va tenenuto finchÃ¨ vogliamo che la pinza rimanga chiusa.
 	END_REGION
 	
 	IF #chiudi AND NOT #apri THEN
@@ -31,3 +31,4 @@ BEGIN
 	#errore := #apri AND #chiudi;
 	
 END_FUNCTION
+

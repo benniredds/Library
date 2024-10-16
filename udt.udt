@@ -1,5 +1,4 @@
-TYPE udt
-{ Published := 'FALSE' }
+﻿TYPE "UDT65535"
 VERSION : 0.1
    STRUCT
       varString : String;
@@ -9,3 +8,4 @@ VERSION : 0.1
    END_STRUCT;
 
 END_TYPE
+

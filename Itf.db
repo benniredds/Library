@@ -1,5 +1,5 @@
-﻿DATA_BLOCK Itf
-{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+﻿DATA_BLOCK "Itf"
+{ S7_Optimized_Access := 'TRUE' }
 VERSION : 0.1
 NON_RETAIN
    VAR 

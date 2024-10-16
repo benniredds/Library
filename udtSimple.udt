@@ -1,5 +1,4 @@
-TYPE udtSimple
-{ Published := 'FALSE' }
+﻿TYPE "udtSimple"
 VERSION : 0.1
    STRUCT
       varString : String;
