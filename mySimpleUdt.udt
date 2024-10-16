@@ -1,0 +1,10 @@
+﻿TYPE "mySimpleUdt"
+VERSION : 0.1
+   STRUCT
+      varString : String;
+      varBool : Bool;
+      varReal : Real;
+   END_STRUCT;
+
+END_TYPE
+
