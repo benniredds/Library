@@ -1,0 +1,14 @@
+﻿NAMESPACE Lib
+TYPE udt
+{ Published := 'FALSE' }
+VERSION : 0.1
+   STRUCT
+      varString : String;
+      varBool : Bool;
+      varArray : Array[0..100] of Int;
+      varReal : Array[0..2] of Real;
+   END_STRUCT;
+
+END_TYPE
+END_NAMESPACE
+
