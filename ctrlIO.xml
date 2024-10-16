@@ -18,7 +18,6 @@
   </Section>
 </Sections></Interface>
       <Name>ctrlIO</Name>
-      <Namespace>Lib</Namespace>
       <Number>3</Number>
       <ProgrammingLanguage>LAD</ProgrammingLanguage>
       <SetENOAutomatically>false</SetENOAutomatically>
