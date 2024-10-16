@@ -1,0 +1,13 @@
+﻿NAMESPACE Lib
+TYPE udtSimple
+{ Published := 'FALSE' }
+VERSION : 0.1
+   STRUCT
+      varString : String;
+      varBool : Bool;
+      varReal : Real;
+   END_STRUCT;
+
+END_TYPE
+END_NAMESPACE
+
