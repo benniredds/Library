@@ -1,5 +1,4 @@
-﻿NAMESPACE Lib
-FUNCTION_BLOCK ctrlArm
+﻿FUNCTION_BLOCK ctrlArm
 { S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
 VERSION : 0.1
    VAR_INPUT 
@@ -143,5 +142,4 @@ BEGIN
 	        
 	        
 END_FUNCTION_BLOCK
-END_NAMESPACE
 
